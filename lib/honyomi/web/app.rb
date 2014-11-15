@@ -35,8 +35,8 @@ get '/help' do
   haml :help
 end
 
-get '/news' do
-  haml :news
+get '/about' do
+  haml :about
 end
 
 get '/books' do
