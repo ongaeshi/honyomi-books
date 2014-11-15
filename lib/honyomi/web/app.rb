@@ -35,6 +35,14 @@ get '/help' do
   haml :help
 end
 
+get '/news' do
+  haml :news
+end
+
+get '/books' do
+  haml :books
+end
+
 post '/search' do
   q = Query.new(params[:query])
 
