@@ -8,26 +8,63 @@
 
     %p
       全文検索可能な電子書籍の図書館です。
-      メモを残したり、他の人の書いたメモを読むことが出来ます。
 
     %p
-      このページは<a href="https://github.com/ongaeshi/honyomi">Honyomi</a>のデモサイトでもあります。
-      サイトの使い勝手が気に入ったら同じ環境を自分のPCやサーバー上に構築することが出来ます。
-      手持ちの電子書籍を好きな時に好きな場所で読んだりブックマークやメモを残せるようになります。
+      再配布可能な電子書籍を集めて全文検索出来るようにしてあります。
+      原文のpdfをその場で読んだりダウンロードしてオフラインで読むことが可能です。
 
     %p
-      サーバー上にHonyomiを設置したい時は<a href="https://github.com/ongaeshi/honyomi-web">honyomi-web</a>が
-      便利です。
+      気になったページにブックマークを付ける、メモを残す、他の人の書いたメモを読むことも出来ます。
 
     %h2#help 使い方
 
-    トップページから適当な単語を入力
+    %h3 検索する
 
-    Honyomi自身の使い方は<a href="http://localhost:9295/help">Help</a>どうぞ。
+    %p
+      %ul
+        %li <a href="/">トップページ</a>から検索すると全ての本の中からマッチしたページを表示します。
+        %li <a href="/v/1">好きな本を選んで</a>検索するとその本の中でマッチしたページがページ順に表示されます。
+        %li <a href="/v/1?page=15&query=15">15</a>のように数字を直接入力すると指定ページに直接ジャンプすることが出来ます。
+        %li タイトルによる絞り込み、ブックマーク機能などの詳しい使い方は<a href="/help">Help</a>をどうぞ。
+
+    %h3 原文のpdfを読みたい
+
+    %p
+      %ul
+        %li "Download"のリンクをクリックするとpdfをダウンロード
+        %li "Pdf"をクリックするとブラウザで直接閲覧することが出来ます
+        %li ページ右側にある"<i class="fa fa-file-text-o"></i>"をクリックするとそのページの原文を直接開くことが出来ます
+        %li 読みたい書籍が見つかったらお気に入りの<a href="http://skim-app.sourceforge.net/">pdfリーダー</a>を使って<a href="http://get.adobe.com/jp/reader/">読むこと</a>をおすすめします
+        %ul
+          %li 読む時はpdfリーダーとブラウザを両方開いておきます
+          %li 気になるページがあったらこのページにブックマークやメモを残していくと後で便利です
+          %li 数字入力(15とか)による指定ページへの直接ジャンプ機能を活用しましょう
 
     %h2#new-book 新しい本を置いてほしい
 
+    %p
+      技術書を中心に再配布可能なライセンスの電子書籍を置いてあります。
+
+    %p
+      一緒に置いてほしい本がありましたら<a href="https://twitter.com/ongaeshi">おんがえし</a>までご連絡下さい。
+      自薦、他薦どちらでも大丈夫です。
+
+    %p
+      このサイト自身は<a href="https://github.com/ongaeshi/honyomi-books">ongaeshi/honyomi-books</a>で管理しています。
+      何か気になることがありましたら<a href="https://github.com/ongaeshi/honyomi-books/issues">Issue</a>までどうぞ。
+
     %h2#license 本のライセンスが知りたい
 
-    <a href="http://localhost:9295/books">Books</a>をどうぞ。
+    <a href="/books">Books</a>をどうぞ。
+
+    %h2#honyomi Honyomiについて
+
+    %p
+      このサイトは<a href="https://github.com/ongaeshi/honyomi">Honyomi</a>のデモサイトでもあります。
+      自分のPCやサーバー上にも同じ環境を構築することが出来ます。
+      手持ちの電子書籍をその場で読んだりダウンロード出来るようになり、ブックマークやメモを残せるようになります。
+
+    %p
+      サーバー上にHonyomiを設置したい時は<a href="https://github.com/ongaeshi/honyomi-web">ongaeshi/honyomi-web</a>が
+      便利です。
 
