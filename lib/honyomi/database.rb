@@ -3,6 +3,8 @@ require 'honyomi/query'
 require 'grn_mini'
 
 module Honyomi
+  class HonyomiError < Exception ; end
+
   class Database
     attr_reader :books
     attr_reader :pages
@@ -65,6 +67,7 @@ module Honyomi
 
     def change_book(book_id, options = {})
       book = @books[book_id]
+      raise HonyomiError, "Invalid book id: #{book_id}" unless book.valid_id?
       
       book.title = options[:title] if options[:title]
       book.author = options[:author] if options[:author]
@@ -96,9 +99,16 @@ module Honyomi
       book.delete
     end
 
-    def search(query)
+    def search(query, options = {})
       match_pages = @pages.select(query.page_query, default_column: "text")
-      snippet = match_pages.expression.snippet([["<span class=\"highlight\">", "</span>"]], {html_escape: true, normalize: true, max_results: 5})
+
+      if options[:cli]
+        snippet = match_pages.expression.snippet([ ['<<',
+                                                    '>>'] ],
+                                                 {normalize: true})
+      else
+        snippet = match_pages.expression.snippet([["<span class=\"highlight\">", "</span>"]], {html_escape: true, normalize: true, max_results: 5})
+      end
 
       match_bookmarks = @bookmarks.select do |record|
         record.match(query.bookmark_query) do |target|
