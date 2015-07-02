@@ -94,5 +94,21 @@ module Honyomi
       comment.gsub("\n", "<br/>")
     end
 
+    def home_dir
+      ENV['HONYOMI_DATABASE_DIR'] || File.join(default_home, '.honyomi')
+    end
+
+    def default_home
+      File.expand_path '~'
+    end
+
+    def count_digit(num)
+      num.to_s.length
+    end
+
+    def image_path(page)
+      zerofill = format("%0#{count_digit(page.book.page_num)}d", page.page_no)
+      "#{home_dir}/image/#{page.book.id}/book-#{zerofill}.jpg"
+    end
   end
 end

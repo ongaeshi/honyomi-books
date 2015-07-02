@@ -110,6 +110,7 @@ module Honyomi
     end
 
     desc "list [book_id1 book_id2 ...]", "List books"
+    option :path, :type => :boolean,  :desc => 'Display path'
     option :title, :aliases => '-t', :type => :string,  :desc => 'Filter title'
     def list(*args)
       core = Core.new
@@ -119,7 +120,7 @@ module Honyomi
     end
 
     desc "web", "Web search interface"
-    option :no_browser, :type => :boolean, :default => false, :aliases => '-n', :type => :boolean, :desc => 'Do not launch browser.'
+    option :no_browser, :type => :boolean, :default => false, :aliases => '-n', :desc => 'Do not launch browser.'
     option :host, :default => '127.0.0.1', :aliases => '-o', :desc => 'Listen on HOST.'
     option :port, :default => 9295, :aliases => '-p', :desc => 'Use PORT.'
     option :server, :default => 'thin', :aliases => '-s', :desc => 'Use SERVER.'
@@ -127,6 +128,16 @@ module Honyomi
       core = Core.new
       core.load_database      
       core.web(options)
+    end
+
+    desc "image book_id1 [book_id2 ...]", "Generate page images (Need pdftoppm)"
+    def image(*args)
+      core = Core.new
+      core.load_database
+
+      args.each do |id|
+        core.image(id.to_i, { verbose: true })
+      end
     end
 
     no_tasks do
